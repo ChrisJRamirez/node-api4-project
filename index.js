@@ -1,4 +1,4 @@
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const express = require("express");
 
 //intitiliazing express
@@ -13,16 +13,25 @@ server.use(express.json());
 
 // GET	/api/users	Returns an array users.
 server.get("/api/users", (req, res) => {
-  res.json({
-    users: []
-  })
-});
+  const users = [
+    {username: "Chris", password: "password"},
+    {username: "Greg", password: "password"}
+  ];
+  res.status(200).json(users)
+})
 
 // POST	/api/register	Creates a user from { username, password } 
 //in the request body, responds with newly created user.
 server.post("/api/register", (req, res) => {
-  
+  res.json ({
+    username: req.body.username,
+    password: req.body.password
+  })
 })
+
+//POST	/api/login	Checks { username, password } 
+// in the request body, responds with a welcome message.
+
 
 
 //Catch All endpoint
@@ -33,5 +42,5 @@ server.use("*", (req, res) => {
 })
 
 server.listen(port, () => {
-  console.log(`Server is on port: ${port}`)
+  console.log(`\nServer is on port: ${port}`)
 });
