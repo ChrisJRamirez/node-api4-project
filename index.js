@@ -36,8 +36,8 @@ server.post("/api/register", (req, res) => {
 
 //Catch All endpoint
 server.use("*", (req, res) => {
-  res.json({
-    data: "API Data Served!"
+  res.status(200).json({
+    message: "API Data Server is live!"
   })
 })
 
