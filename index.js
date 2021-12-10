@@ -20,13 +20,21 @@ server.get("/api/users", (req, res) => {
   res.status(200).json(users)
 })
 
+const users = [
+  
+];
 // POST	/api/register	Creates a user from { username, password } 
 //in the request body, responds with newly created user.
 server.post("/api/register", (req, res) => {
-  res.json ({
+  users.push(...users, {
     username: req.body.username,
     password: req.body.password
   })
+  res.json (users)
+})
+
+server.get("/api/regtest", (req, res) => {
+  res.json(users);
 })
 
 //POST	/api/login	Checks { username, password } 
